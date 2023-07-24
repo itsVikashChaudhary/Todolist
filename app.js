@@ -10,6 +10,8 @@ const app = express();
 
 // var items = ["Buy Food","Cook Food","Eat Food"];
 // let workItems = []
+//mongodb://127.0.0.1:27017/todolistDB
+//mongodb+srv://darkrider200011:12345@cluster0.86h7emd.mongodb.net/todolistDB
 mongoose.connect("mongodb+srv://darkrider200011:12345@cluster0.86h7emd.mongodb.net/todolistDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -301,6 +303,9 @@ app.get("/:customListName",function(req,res){
             .then(() =>{
                 res.redirect("/"+listName);
             })
+            .catch((err)=>{
+              console.log("Error updating:")
+            })
         }
     })
 
@@ -311,13 +316,16 @@ app.get("/:customListName",function(req,res){
  });
 
     
+ app.listen(3000,function(req,res){
+  console.log("Server running on port 3000");
+ });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
-app.listen(port);
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 3000;
+// }
+// app.listen(port);
 
-app.listen(port,function(){
-    console.log("server has started successfully");
-});
+// app.listen(port,function(){
+//     console.log("server has started successfully");
+// });
